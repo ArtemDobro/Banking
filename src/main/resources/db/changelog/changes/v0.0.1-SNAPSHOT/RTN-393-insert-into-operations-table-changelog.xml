@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="insert test data into operations 1" author="g.aldamm">
+        <insert tableName="operations">
+            <column name="id" value="11111111-1111-1111-1111-1111111111cf"/>
+            <column name="account_id" value="11111111-1111-1111-1111-1111111111ac"/>
+            <column name="completed_at" value="2022-06-20 22:51:15-0"/>
+            <column name="sum" value="31851.1"/>
+            <column name="details" value="buying a boat"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="operation_type_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operations 2" author="g.aldamm">
+        <insert tableName="operations">
+            <column name="id" value="22222222-1111-1111-1111-1111111111cf"/>
+            <column name="account_id" value="22222222-1111-1111-1111-1111111111ac"/>
+            <column name="completed_at" value="2022-06-20 22:52:44-0"/>
+            <column name="sum" value="1000"/>
+            <column name="details" value="salary"/>
+            <column name="currency_code" value="USD"/>
+            <column name="operation_type_id" value="2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operations 3" author="g.aldamm">
+        <insert tableName="operations">
+            <column name="id" value="33333333-1111-1111-1111-1111111111cf"/>
+            <column name="account_id" value="33333333-1111-1111-1111-1111111111ac"/>
+            <column name="completed_at" value="2022-06-20 22:55:50-0"/>
+            <column name="sum" value="50000"/>
+            <column name="details" value="debt repayment"/>
+            <column name="currency_code" value="EUR"/>
+            <column name="operation_type_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operations 4" author="g.aldamm">
+        <insert tableName="operations">
+            <column name="id" value="44444444-1111-1111-1111-1111111111cf"/>
+            <column name="account_id" value="44444444-1111-1111-1111-1111111111ac"/>
+            <column name="completed_at" value="2022-06-20 23:00:11-0"/>
+            <column name="sum" value="123456.23"/>
+            <column name="details" value="debt repayment"/>
+            <column name="currency_code" value="USD"/>
+            <column name="operation_type_id" value="4"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operations 5" author="g.aldamm">
+        <insert tableName="operations">
+            <column name="id" value="55555555-1111-1111-1111-1111111111cf"/>
+            <column name="account_id" value="55555555-1111-1111-1111-1111111111ac"/>
+            <column name="completed_at" value="2022-06-20 23:44:15-0"/>
+            <column name="sum" value="1513.21"/>
+            <column name="details" value="taxes"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="operation_type_id" value="5"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
