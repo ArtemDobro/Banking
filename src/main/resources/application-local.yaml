@@ -1,0 +1,7 @@
+spring:
+
+  datasource:
+    url: ${datasource.url:jdbc:postgresql://localhost:5432/deposit-service}
+
+  jpa:
+    show-sql: true

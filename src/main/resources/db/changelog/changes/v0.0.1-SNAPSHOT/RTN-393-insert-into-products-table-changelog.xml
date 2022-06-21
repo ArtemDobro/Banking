@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="insert test data into products 1" author="g.aldamm">
+        <insert tableName="products">
+            <column name="id" value="1"/>
+            <column name="name" value="name for deposit product 1"/>
+            <column name="schema_name" value="FIXED"/>
+            <column name="interest_rate_early" value="1.0"/>
+            <column name="is_capitalization" value="true"/>
+            <column name="amount_min" value="1000"/>
+            <column name="amount_max" value="300000"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="is_active" value="true"/>
+            <column name="is_revocable" value="true"/>
+            <column name="min_duration_months" value="3"/>
+            <column name="max_duration_months" value="36"/>
+            <column name="min_interest_rate" value="0.5"/>
+            <column name="max_interest_rate" value="1.5"/>
+            <column name="active_since" value="2020-02-02"/>
+            <column name="active_until" value="2022-02-02"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into products 2" author="g.aldamm">
+        <insert tableName="products">
+            <column name="id" value="2"/>
+            <column name="name" value="name for deposit product 2"/>
+            <column name="schema_name" value="RECCURING"/>
+            <column name="interest_rate_early" value="5.0"/>
+            <column name="is_capitalization" value="false"/>
+            <column name="amount_min" value="50000"/>
+            <column name="amount_max" value="10000000"/>
+            <column name="currency_code" value="USD"/>
+            <column name="is_active" value="false"/>
+            <column name="is_revocable" value="false"/>
+            <column name="min_duration_months" value="12"/>
+            <column name="max_duration_months" value="360"/>
+            <column name="min_interest_rate" value="5.5"/>
+            <column name="max_interest_rate" value="6.5"/>
+            <column name="active_since" value="2022-07-07"/>
+            <column name="active_until" value="2030-10-02"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into products 3" author="g.aldamm">
+        <insert tableName="products">
+            <column name="id" value="3"/>
+            <column name="name" value="name for deposit product 3"/>
+            <column name="schema_name" value="RECCURING"/>
+            <column name="is_capitalization" value="false"/>
+            <column name="currency_code" value="EUR"/>
+            <column name="is_active" value="false"/>
+            <column name="is_revocable" value="false"/>
+            <column name="min_duration_months" value="2"/>
+            <column name="max_duration_months" value="60"/>
+            <column name="min_interest_rate" value="3.5"/>
+            <column name="max_interest_rate" value="5.5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into products 4" author="g.aldamm">
+        <insert tableName="products">
+            <column name="id" value="4"/>
+            <column name="name" value="name for deposit product 4"/>
+            <column name="schema_name" value="FIXED"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="min_duration_months" value="1"/>
+            <column name="max_duration_months" value="12"/>
+            <column name="min_interest_rate" value="0.5"/>
+            <column name="max_interest_rate" value="1.0"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into products 5" author="g.aldamm">
+        <insert tableName="products">
+            <column name="id" value="5"/>
+            <column name="name" value="name for deposit product 5"/>
+            <column name="schema_name" value="FIXED"/>
+            <column name="interest_rate_early" value="25.0"/>
+            <column name="is_capitalization" value="true"/>
+            <column name="amount_min" value="1000"/>
+            <column name="amount_max" value="1000"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="is_active" value="true"/>
+            <column name="is_revocable" value="true"/>
+            <column name="min_duration_months" value="1"/>
+            <column name="max_duration_months" value="6"/>
+            <column name="min_interest_rate" value="25.0"/>
+            <column name="max_interest_rate" value="60"/>
+            <column name="active_since" value="2020-01-01"/>
+            <column name="active_until" value="2050-12-12"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

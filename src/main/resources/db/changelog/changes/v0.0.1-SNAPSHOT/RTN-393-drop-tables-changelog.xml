@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="drop table agreements" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="agreement"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="agreement"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table cards" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="cards"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="cards"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table operations" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="operations"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="operations"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table products" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="products"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="products"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table accounts" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="accounts"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="accounts"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table card_products" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="card_products"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="card_products"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="drop table operation_types" author="g.aldamm">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="operation_types"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="operation_types"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
