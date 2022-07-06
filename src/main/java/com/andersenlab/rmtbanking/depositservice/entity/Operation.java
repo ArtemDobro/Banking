@@ -36,7 +36,7 @@ public class Operation {
     private BigDecimal sum;
 
     @Column(name = "details")
-    private String detail;
+    private String details;
 
     @Column(name = "currency_code")
     private String currencyCode;
@@ -69,7 +69,7 @@ public class Operation {
                 "id=" + id +
                 ", completedAt=" + completedAt +
                 ", sum=" + sum +
-                ", detail='" + detail + '\'' +
+                ", detail='" + details + '\'' +
                 ", currencyCode=" + currencyCode +
                 ", operation type" + operationType +
                 '}';
