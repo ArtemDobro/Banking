@@ -1,6 +1,5 @@
-package com.andersenlab.rmtbanking.creditservice.generator;
+package com.andersenlab.rmtbanking.depositservice.generator;
 
-import com.andersenlab.rmtbanking.depositservice.generator.UuidTimeSequenceGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

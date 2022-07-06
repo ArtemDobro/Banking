@@ -8,7 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -42,10 +42,10 @@ public class Account {
     private BigDecimal currentBalance;
 
     @Column(name = "open_date")
-    private Date openDate;
+    private LocalDate openDate;
 
     @Column(name = "close_date")
-    private Date closeDate;
+    private LocalDate closeDate;
 
     @Column(name = "is_active")
     private boolean active;

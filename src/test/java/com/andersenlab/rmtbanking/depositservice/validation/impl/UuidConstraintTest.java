@@ -1,4 +1,4 @@
-package com.andersenlab.rmtbanking.creditservice.validation.impl;
+package com.andersenlab.rmtbanking.depositservice.validation.impl;
 
 import com.andersenlab.rmtbanking.depositservice.validation.impl.UuidConstraint;
 import org.junit.jupiter.api.DisplayName;

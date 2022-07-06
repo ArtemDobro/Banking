@@ -46,7 +46,7 @@ public class Card {
     @Column(name = "holder_name")
     private String holderName;
 
-    @Column(name = "virual_card")
+    @Column(name = "virtual_card")
     private boolean virtualCard;
 
     @Column(name = "digital_wallet")
