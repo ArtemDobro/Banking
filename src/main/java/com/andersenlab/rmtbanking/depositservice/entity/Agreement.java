@@ -53,7 +53,7 @@ public class Agreement {
     @Column(name = "auto_renewal")
     private boolean autoRenewal;
 
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
