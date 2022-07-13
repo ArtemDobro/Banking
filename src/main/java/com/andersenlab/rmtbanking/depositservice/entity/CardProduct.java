@@ -33,7 +33,7 @@ public class CardProduct {
     @Enumerated(EnumType.STRING)
     private PaymentSystem paymentSystem;
 
-    @Column(name = "cash_back")
+    @Column(name = "cashback")
     private BigDecimal cashBack;
 
     @Column(name = "co_brand")

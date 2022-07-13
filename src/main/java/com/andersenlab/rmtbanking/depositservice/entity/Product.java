@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -21,11 +22,8 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID",
-            strategy = "com.andersenlab.rmtbanking.depositservice.generator.UuidTimeSequenceGenerator")
     @Column(name = "id")
-    private UUID id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -33,7 +31,7 @@ public class Product {
     @Column(name = "schema_name")
     private String schemaName;
 
-    @Column(name = "ineterest_rate_early")
+    @Column(name = "interest_rate_early")
     private BigDecimal interestRateEarly;
 
     @Column(name = "is_capitalization")
