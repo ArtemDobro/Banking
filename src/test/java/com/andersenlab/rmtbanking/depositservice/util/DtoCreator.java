@@ -1,9 +1,11 @@
 package com.andersenlab.rmtbanking.depositservice.util;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -21,5 +23,16 @@ public class DtoCreator {
                 true,
                 "Yes",
                 false);
+    }
+
+    public static DepositDto getDepositDto() {
+        return new DepositDto(
+                "11111111-1111-1111-1111-1111111111dc",
+                Timestamp.valueOf("2020-09-23 10:10:10.0"),
+                Timestamp.valueOf("2025-09-23 10:10:10.0"),
+                BigDecimal.valueOf(9999999),
+                "product_name",
+                "USD",
+                "");
     }
 }

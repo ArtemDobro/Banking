@@ -1,0 +1,52 @@
+package com.andersenlab.rmtbanking.depositservice.mapper;
+
+import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
+import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
+import com.andersenlab.rmtbanking.depositservice.util.EntityCreator;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@DisplayName("Debit cards mapper test class")
+class DepositMapperTest {
+
+    private final DepositMapper depositMapper = new DepositMapperImpl();
+
+    @Test
+    @DisplayName("Agreement to Dto test method")
+    void fromEntityToDepositDto() {
+        Agreement agreement = EntityCreator.getAgreement();
+        DepositDto depositDto = depositMapper.toDepositDto(agreement);
+        compareEntityWithDto(agreement, depositDto);
+    }
+
+    @Test
+    @DisplayName("Agreement list to list Dto's test method")
+    void agreementsToDepositDtoList() {
+        List<Agreement> agreementList = List.of(EntityCreator.getAgreement());
+        List<DepositDto> depositDtoList = depositMapper.agreementsToDepositDtoList(agreementList);
+        compareEntityListWithDtoList(agreementList, depositDtoList);
+    }
+
+    private void compareEntityWithDto(Agreement agreement, DepositDto depositDto) {
+        assertAll(() -> assertEquals(agreement.getId()
+                        .toString(), depositDto.getAgreementId()),
+                () -> assertEquals(agreement.getStartDate(), depositDto.getStartDate()),
+                () -> assertEquals(agreement.getEndDate(), depositDto.getEndDate()),
+                () -> assertEquals(agreement.getCurrentBalance(), depositDto.getCurrentBalance()),
+                () -> assertEquals(agreement.getProduct().getName(), depositDto.getProductName()),
+                () -> assertEquals(agreement.getProduct().getCurrencyCode(), depositDto.getCurrencyCode()));
+    }
+
+    private void compareEntityListWithDtoList(List<Agreement> agreementList, List<DepositDto> agreementDtoList) {
+        assertEquals(agreementList.size(), agreementDtoList.size());
+        for (int s = 0; s < agreementList.size(); s++) {
+            compareEntityWithDto(agreementList.get(s), agreementDtoList.get(s));
+        }
+    }
+}
+
