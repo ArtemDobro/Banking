@@ -22,7 +22,7 @@ import java.util.UUID;
 public class DebitCardsInfoMapperTest {
 
     @Spy
-    private DebitCardsInfoMapper debitCardsInfoMapper = new DebitCardsInfoMapperImpl();
+    private DebitCardsMapper debitCardsInfoMapper = new DebitCardsMapperImpl();
 
     @Test
     @DisplayName("Test to get DtoInfo")

@@ -2,7 +2,6 @@ package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
-import com.andersenlab.rmtbanking.depositservice.mapper.DebitCardsInfoMapper;
 import com.andersenlab.rmtbanking.depositservice.mapper.DebitCardsMapper;
 import com.andersenlab.rmtbanking.depositservice.repository.AccountRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
@@ -23,7 +22,6 @@ public class DebitCardsServiceImpl implements DebitCardService {
     private final DebitCardsRepository debitCardsRepository;
     private final AccountRepository accountRepository;
     private final DebitCardsMapper debitCardsMapper;
-    private final DebitCardsInfoMapper debitCardsInfoMapper;
 
     @Override
     @Transactional(readOnly = true)
@@ -38,6 +36,6 @@ public class DebitCardsServiceImpl implements DebitCardService {
     @Override
     @Transactional(readOnly = true)
     public DebitCardsInfoDto getOneDebitCardInfo(String cardId) {
-        return debitCardsInfoMapper.debitCardsInfoToDto(debitCardsRepository.findById(UUID.fromString(cardId)).get());
+        return debitCardsMapper.debitCardsInfoToDto(debitCardsRepository.findById(UUID.fromString(cardId)).get());
     }
 }
