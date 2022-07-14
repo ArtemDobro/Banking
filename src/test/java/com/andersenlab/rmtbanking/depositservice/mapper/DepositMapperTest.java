@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("Debit cards mapper test class")
+@DisplayName("Deposit mapper test class")
 class DepositMapperTest {
 
     private final DepositMapper depositMapper = new DepositMapperImpl();
