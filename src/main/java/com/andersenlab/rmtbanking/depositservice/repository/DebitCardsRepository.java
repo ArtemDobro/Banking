@@ -9,5 +9,4 @@ import java.util.UUID;
 public interface DebitCardsRepository extends JpaRepository<Card, UUID> {
     List<Card> getCardsByAccountClientIdAndAccountActive(UUID clientId, boolean active);
 
-    Card getCardById(UUID cardId);
 }

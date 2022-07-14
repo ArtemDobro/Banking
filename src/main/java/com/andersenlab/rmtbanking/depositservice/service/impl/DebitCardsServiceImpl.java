@@ -38,6 +38,6 @@ public class DebitCardsServiceImpl implements DebitCardService {
     @Override
     @Transactional(readOnly = true)
     public DebitCardsInfoDto getOneDebitCardInfo(String cardId) {
-        return debitCardsInfoMapper.debitCardsInfoToDto(debitCardsRepository.getCardById(UUID.fromString(cardId)));
+        return debitCardsInfoMapper.debitCardsInfoToDto(debitCardsRepository.findById(UUID.fromString(cardId)).get());
     }
 }

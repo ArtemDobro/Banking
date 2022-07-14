@@ -5,6 +5,7 @@ import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+
 @Mapper(componentModel = "spring")
 public interface DebitCardsInfoMapper {
     @Mapping(source = "account.accountNumber", target = "accountNumber")
