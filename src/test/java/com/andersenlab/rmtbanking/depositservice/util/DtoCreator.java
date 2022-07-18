@@ -1,6 +1,7 @@
 package com.andersenlab.rmtbanking.depositservice.util;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 
 import java.math.BigDecimal;
@@ -21,5 +22,13 @@ public class DtoCreator {
                 true,
                 "Yes",
                 false);
+    }
+    public static DebitCardsInfoDto getDebitCardsInfoDto() {
+        return new DebitCardsInfoDto("account_number",
+                "YES",
+                "2222-01-01",
+                "9999999",
+                "USD",
+                "EXPIRED");
     }
 }
