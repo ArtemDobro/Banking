@@ -6,6 +6,7 @@ import com.andersenlab.rmtbanking.depositservice.util.EntityCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -35,8 +36,8 @@ class DepositMapperTest {
     private void compareEntityWithDto(Agreement agreement, DepositDto depositDto) {
         assertAll(() -> assertEquals(agreement.getId()
                         .toString(), depositDto.getAgreementId()),
-                () -> assertEquals(agreement.getStartDate(), depositDto.getStartDate()),
-                () -> assertEquals(agreement.getEndDate(), depositDto.getEndDate()),
+                () -> assertEquals(agreement.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getStartDate()),
+                () -> assertEquals(agreement.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getEndDate()),
                 () -> assertEquals(agreement.getCurrentBalance(), depositDto.getCurrentBalance()),
                 () -> assertEquals(agreement.getProduct().getName(), depositDto.getProductName()),
                 () -> assertEquals(agreement.getProduct().getCurrencyCode(), depositDto.getCurrencyCode()));

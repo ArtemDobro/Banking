@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Collections;
 import java.util.UUID;
 
 public class EntityCreator {
@@ -25,7 +26,6 @@ public class EntityCreator {
         card.setHolderName("Monica");
         card.setVirtualCard(true);
         card.setDigitalWallet("444");
-        card.setDefaults(true);
         return card;
     }
 
@@ -41,6 +41,7 @@ public class EntityCreator {
         account.setActive(true);
         account.setSalaryProject("YES");
         account.setBlockedSum(BigDecimal.valueOf(11111));
+        account.setCards(Collections.emptyList());
         return account;
     }
 

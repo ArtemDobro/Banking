@@ -26,15 +26,4 @@ public interface DebitCardsMapper {
     @Mapping(source = "account.currentBalance", target = "currentBalance")
     @Mapping(source = "account.currencyCode", target = "currencyCode")
     DebitCardsInfoDto debitCardsInfoToDto(Card card);
-
-    @Named("getDefaultCard")
-    default String getDefaultCard(Account account) {
-        return account.getCards()
-                .stream()
-                .filter(Card::isDefaults)
-                .findFirst()
-                .map(Card::getId)
-                .map(UUID::toString)
-                .orElse("");
-    }
 }
