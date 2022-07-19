@@ -8,6 +8,7 @@ import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 public class DtoCreator {
@@ -37,8 +38,8 @@ public class DtoCreator {
     public static DepositDto getDepositDto() {
         return new DepositDto(
                 "11111111-1111-1111-1111-1111111111dc",
-                Timestamp.valueOf("2020-09-23 10:10:10.0"),
-                Timestamp.valueOf("2025-09-23 10:10:10.0"),
+                LocalDateTime.of(2020, 9, 23, 10, 10),
+                LocalDateTime.of(2025, 9, 23, 10, 10),
                 BigDecimal.valueOf(9999999),
                 "product_name",
                 "USD",
