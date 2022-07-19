@@ -5,6 +5,7 @@ import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,6 +20,7 @@ public interface DebitCardsMapper {
 
     List<DebitCardsDto> debitCardsToDebitCardsDto(List<Card> allByAccountId);
 
+    @Named("getDefaultCard")
     default String getDefaultCard(Account account) {
         return account.getCards()
                 .stream()

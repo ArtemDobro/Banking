@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {DebitCardsMapper.class}, imports = {Card.class})
+@Mapper(componentModel = "spring", uses = DebitCardsMapper.class, imports = Card.class)
 public interface DepositMapper {
 
     @Mapping(source = "id", target = "agreementId")
