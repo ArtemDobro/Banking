@@ -24,7 +24,7 @@ public class CardProduct {
 
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "card_name")
     private String cardName;
@@ -33,7 +33,7 @@ public class CardProduct {
     @Enumerated(EnumType.STRING)
     private PaymentSystem paymentSystem;
 
-    @Column(name = "cash_back")
+    @Column(name = "cashback")
     private BigDecimal cashBack;
 
     @Column(name = "co_brand")

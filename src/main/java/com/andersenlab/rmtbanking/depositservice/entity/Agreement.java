@@ -9,7 +9,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -33,7 +32,7 @@ public class Agreement {
     @Column(name = "agreement_number")
     private String agreementNumber;
 
-    @Column(name = "interset_rate")
+    @Column(name = "interest_rate")
     private BigDecimal interestRate;
 
     @Column(name = "start_date")
@@ -54,11 +53,11 @@ public class Agreement {
     @Column(name = "auto_renewal")
     private boolean autoRenewal;
 
-    @OneToMany(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private List<Product> products;
+    private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
@@ -68,12 +67,12 @@ public class Agreement {
         if (o == null || getClass() != o.getClass()) return false;
         Agreement agreement = (Agreement) o;
         return Objects.equals(agreementNumber, agreement.agreementNumber)
-                && Objects.equals(products, agreement.products);
+                && Objects.equals(product, agreement.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(agreementNumber, products);
+        return Objects.hash(agreementNumber, product);
     }
 
     @Override
