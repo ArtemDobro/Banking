@@ -3,16 +3,16 @@ package com.andersenlab.rmtbanking.depositservice.dto;
 import lombok.Value;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Value
 public class DepositDto {
 
     String agreementId;
 
-    Timestamp startDate;
+    LocalDateTime startDate;
 
-    Timestamp endDate;
+    LocalDateTime endDate;
 
     BigDecimal currentBalance;
 
