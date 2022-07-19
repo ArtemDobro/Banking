@@ -20,7 +20,6 @@ public interface DebitCardsMapper {
 
     List<DebitCardsDto> debitCardsToDebitCardsDto(List<Card> allByAccountId);
 
-    @Named("getDefaultCard")
     default String getDefaultCard(Account account) {
         return account.getCards()
                 .stream()
