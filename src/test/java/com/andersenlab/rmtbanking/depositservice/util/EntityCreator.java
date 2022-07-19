@@ -26,6 +26,7 @@ public class EntityCreator {
         card.setHolderName("Monica");
         card.setVirtualCard(true);
         card.setDigitalWallet("444");
+        card.setDefaults(true);
         return card;
     }
 

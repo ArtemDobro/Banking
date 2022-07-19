@@ -6,7 +6,6 @@ import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -26,6 +25,7 @@ public class DtoCreator {
                 "Yes",
                 false);
     }
+
     public static DebitCardsInfoDto getDebitCardsInfoDto() {
         return new DebitCardsInfoDto("account_number",
                 "YES",
