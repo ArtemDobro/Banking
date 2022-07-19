@@ -1,7 +1,6 @@
 package com.andersenlab.rmtbanking.depositservice.controller;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
-import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.service.DepositService;
 import com.andersenlab.rmtbanking.depositservice.validation.annotation.Uuid;
 import lombok.RequiredArgsConstructor;

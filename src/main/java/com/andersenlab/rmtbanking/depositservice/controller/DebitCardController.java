@@ -1,6 +1,7 @@
 package com.andersenlab.rmtbanking.depositservice.controller;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 import com.andersenlab.rmtbanking.depositservice.service.DebitCardService;
 import com.andersenlab.rmtbanking.depositservice.validation.annotation.Uuid;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class DebitCardController {
     @ResponseStatus(HttpStatus.OK)
     public List<DebitCardsDto> getAllDebitCards(@Uuid @PathVariable("clientId") String clientId) {
         return debitCardService.getAllActiveDebitCards(clientId);
+    }
+
+    @GetMapping("/info/{cardId}")
+    @ResponseStatus(HttpStatus.OK)
+    public DebitCardsInfoDto getDebitCardInfo(@Uuid @PathVariable String cardId) {
+        return debitCardService.getOneDebitCardInfo(cardId);
     }
 }
