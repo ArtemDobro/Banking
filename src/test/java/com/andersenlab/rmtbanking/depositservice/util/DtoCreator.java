@@ -2,10 +2,12 @@ package com.andersenlab.rmtbanking.depositservice.util;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 
 public class DtoCreator {
@@ -23,6 +25,7 @@ public class DtoCreator {
                 "Yes",
                 false);
     }
+
     public static DebitCardsInfoDto getDebitCardsInfoDto() {
         return new DebitCardsInfoDto("account_number",
                 "YES",
@@ -31,4 +34,19 @@ public class DtoCreator {
                 "USD",
                 "EXPIRED");
     }
+
+    public static DetailedDepositDto getDetailedDepositDto() {
+        return new DetailedDepositDto("1234567890123456",
+                LocalDateTime.of(2022, Month.APRIL, 1, 10, 10),
+                LocalDateTime.of(2028, Month.APRIL, 1, 10, 10),
+                new BigDecimal("5.3"),
+                new BigDecimal("7000000"),
+                true,
+                "test name",
+                "USD",
+                "schemaName",
+                true,
+                true);
+    }
 }
+
