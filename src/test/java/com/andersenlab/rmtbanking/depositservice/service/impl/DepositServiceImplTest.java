@@ -39,7 +39,7 @@ class DepositServiceImplTest {
 
     @AfterEach
     public void clearMocks() {
-        Mockito.clearInvocations(agreementRepository, depositMapper);
+        Mockito.clearInvocations(agreementRepository, debitCardsRepository, depositMapper);
     }
 
     @Test
