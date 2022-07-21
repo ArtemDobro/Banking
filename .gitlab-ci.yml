@@ -35,8 +35,8 @@ sonar-feature:
     - mvn package
   script:
     - mvn sonar:sonar
-      -Dsonar.projectKey=$PROGECT-$APP-$CI_COMMIT_BRANCH
-      -Dsonar.projectName=$PROGECT-$APP-$CI_COMMIT_BRANCH
+      -Dsonar.projectKey=$PROGECT-$APP-feature
+      -Dsonar.projectName=$PROGECT-$APP-feature
       -Dsonar.projectVersion=1.0
       -Dsonar.links.ci=$CI_PIPELINE_URL
       -Dsonar.login=$SONAR_LOGIN
@@ -48,7 +48,7 @@ sonar-feature:
     - stage
 
 
-docker-dev:
+docker:
   stage: build
   tags:
     - shell-dev
@@ -60,34 +60,10 @@ docker-dev:
   rules:
     - if: $CI_COMMIT_REF_NAME == "dev"
     - if: $CI_COMMIT_REF_NAME == "dev" && $CI_PIPELINE_SOURCE == "merge_request_event"
-
-
-docker-test:
-  stage: build
-  tags:
-    - shell-test
-  before_script:
-    - echo "$AND_DOCKER_REGISTRY_RW_PASS" | docker login -u nexus "$AND_DOCKER_REGISTRY" --password-stdin
-  script:
-    - docker build --tag $AND_DOCKER_REGISTRY_NAME/$PROGECT-$APP:$CI_COMMIT_BRANCH -f Dockerfile --build-arg BUILDKIT_INLINE_CACHE=1 .
-    - docker push $AND_DOCKER_REGISTRY_NAME/$PROGECT-$APP:$CI_COMMIT_BRANCH
-  rules:
     - if: $CI_COMMIT_REF_NAME == "test"
     - if: $CI_COMMIT_REF_NAME == "test" && $CI_PIPELINE_SOURCE == "merge_request_event"
-
-docker-stage:
-  stage: build
-  tags:
-    - shell-stage
-  before_script:
-    - echo "$AND_DOCKER_REGISTRY_RW_PASS" | docker login -u nexus "$AND_DOCKER_REGISTRY" --password-stdin
-  script:
-    - docker build --tag $AND_DOCKER_REGISTRY_NAME/$PROGECT-$APP:$CI_COMMIT_BRANCH -f Dockerfile --build-arg BUILDKIT_INLINE_CACHE=1 .
-    - docker push $AND_DOCKER_REGISTRY_NAME/$PROGECT-$APP:$CI_COMMIT_BRANCH
-  rules:
     - if: $CI_COMMIT_REF_NAME == "stage"
     - if: $CI_COMMIT_REF_NAME == "stage" && $CI_PIPELINE_SOURCE == "merge_request_event"
-
 
 docker-feature:
   stage: build
