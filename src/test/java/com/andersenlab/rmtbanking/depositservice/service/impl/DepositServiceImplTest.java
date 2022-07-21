@@ -43,7 +43,7 @@ class DepositServiceImplTest {
     }
 
     @Test
-    @DisplayName("Get all deposits test method")
+    @DisplayName("Get deposit test method")
     void getDeposit() {
         Agreement agreement = EntityCreator.getAgreement();
         Card card = EntityCreator.getCard();
