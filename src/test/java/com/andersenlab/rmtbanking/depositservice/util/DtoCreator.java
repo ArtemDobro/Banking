@@ -12,6 +12,8 @@ import java.time.Month;
 
 public class DtoCreator {
 
+    public static final String EXAMPLE_UUID = "11111111-1111-1111-1111-1111111111dc";
+
     public static DebitCardsDto getDebitCardsDto() {
         return new DebitCardsDto(
                 "11111111-1111-1111-1111-1111111111dc",

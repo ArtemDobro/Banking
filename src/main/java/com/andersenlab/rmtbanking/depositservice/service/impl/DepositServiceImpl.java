@@ -28,14 +28,16 @@ public class DepositServiceImpl implements DepositService {
     @Override
     @Transactional(readOnly = true)
     public DetailedDepositDto getDetailedDeposit(String agreementId, String cardId) {
-        Agreement agreement = agreementRepository.findById(getUuid(agreementId))
-                .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.AGREEMENT_NOT_FOUND));
-        Card card = debitCardsRepository.findById(getUuid(cardId))
-                .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.CARD_NOT_FOUND));
-        return depositMapper.toDetailedDepositDto(agreement, card);
+        return depositMapper.toDetailedDepositDto(validateAndReturnAgreement(agreementId), validateAndReturnCard(cardId));
     }
 
-    public UUID getUuid(String id) {
-        return UUID.fromString(id);
+    private Agreement validateAndReturnAgreement(String agreementId) {
+        return agreementRepository.findById(UUID.fromString(agreementId))
+                .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.AGREEMENT_NOT_FOUND));
+    }
+
+    private Card validateAndReturnCard(String cardId) {
+        return debitCardsRepository.findById(UUID.fromString(cardId))
+                .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.CARD_NOT_FOUND));
     }
 }

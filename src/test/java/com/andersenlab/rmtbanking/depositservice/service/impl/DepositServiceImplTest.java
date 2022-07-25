@@ -27,7 +27,6 @@ import static org.mockito.Mockito.when;
 @DisplayName("Test class for DepositServiceImplTest")
 class DepositServiceImplTest {
 
-    private static final String EXAMPLE = "11111111-1111-1111-1111-1111111111dc";
     @Mock
     private DepositMapper depositMapper;
     @Mock
@@ -49,13 +48,13 @@ class DepositServiceImplTest {
         Card card = EntityCreator.getCard();
         DetailedDepositDto detailedDepositDto = DtoCreator.getDetailedDepositDto();
 
-        when(agreementRepository.findById(UUID.fromString(EXAMPLE)))
+        when(agreementRepository.findById(UUID.fromString(DtoCreator.EXAMPLE_UUID)))
                 .thenReturn(Optional.of(agreement));
-        when(debitCardsRepository.findById(UUID.fromString(EXAMPLE)))
+        when(debitCardsRepository.findById(UUID.fromString(DtoCreator.EXAMPLE_UUID)))
                 .thenReturn(Optional.of(card));
         when(depositMapper.toDetailedDepositDto(agreement, card)).thenReturn(detailedDepositDto);
 
-        DetailedDepositDto actualDetailedDepositDto = depositService.getDetailedDeposit(EXAMPLE, EXAMPLE);
+        DetailedDepositDto actualDetailedDepositDto = depositService.getDetailedDeposit(DtoCreator.EXAMPLE_UUID, DtoCreator.EXAMPLE_UUID);
         assertEquals(actualDetailedDepositDto, detailedDepositDto);
     }
 }
