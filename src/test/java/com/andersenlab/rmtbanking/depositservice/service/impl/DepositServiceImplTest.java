@@ -50,7 +50,7 @@ class DepositServiceImplTest {
         List<DepositDto> depositDtos = List.of(DtoCreator.getDepositDto());
         Account account = EntityCreator.getTestAccount();
 
-        when(agreementRepository.getAgreementsByAccountClientIdAndAccountActive(UUID.fromString(EXAMPLE), true))
+        when(agreementRepository.getAgreementsByClientIdAndAccountStatus(UUID.fromString(EXAMPLE), true))
                 .thenReturn(agreements);
         when(depositMapper.agreementsToDepositDtoList(agreements)).thenReturn(depositDtos);
         when(accountRepository.findByClientId(UUID.fromString(EXAMPLE)))
