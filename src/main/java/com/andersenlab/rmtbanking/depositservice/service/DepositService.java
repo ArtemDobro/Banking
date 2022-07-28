@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public interface DepositService {
+
     /**
      * Return list of @{@link DepositDto} of account with specific client id.
      *
