@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Mapper(componentModel = "spring")
@@ -24,12 +25,16 @@ public interface DepositMapper {
 
     @Named("getDefaultCard")
     default String getDefaultDebitCard(Account account) {
-        return account.getCards()
-                .stream()
-                .filter(Card::isDefaults)
-                .findFirst()
-                .map(Card::getId)
-                .map(UUID::toString)
-                .orElse("");
+        if (Optional.ofNullable(account.getCards()).isPresent()){
+            return Optional.ofNullable(account.getCards())
+                    .get()
+                    .stream()
+                    .filter(Card::isDefaults)
+                    .findFirst()
+                    .map(Card::getId)
+                    .map(UUID::toString)
+                    .orElse("");
+        }
+        return "";
     }
 }
