@@ -16,6 +16,10 @@
     </parent>
 
     <properties>
+        <jacoco.version>0.8.8</jacoco.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
@@ -149,6 +153,9 @@
                         <version>${jacoco-maven-plugin.version}</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                <outputDirectory>${project.basedir}/target/site/jacoco</outputDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <id>jacoco-initialize</id>
