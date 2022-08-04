@@ -1,11 +1,14 @@
 package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
+import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import com.andersenlab.rmtbanking.depositservice.mapper.DepositMapper;
 import com.andersenlab.rmtbanking.depositservice.repository.AccountRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
+import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
 import com.andersenlab.rmtbanking.depositservice.util.DtoCreator;
 import com.andersenlab.rmtbanking.depositservice.util.EntityCreator;
 import org.junit.jupiter.api.AfterEach;
@@ -34,13 +37,32 @@ class DepositServiceImplTest {
     @Mock
     private AgreementRepository agreementRepository;
     @Mock
+    private DebitCardsRepository debitCardsRepository;
+    @Mock
     private AccountRepository accountRepository;
     @InjectMocks
     private DepositServiceImpl depositService;
 
     @AfterEach
     public void clearMocks() {
-        Mockito.clearInvocations(agreementRepository, depositMapper);
+        Mockito.clearInvocations(agreementRepository, debitCardsRepository, depositMapper, accountRepository);
+    }
+
+    @Test
+    @DisplayName("Get deposit test method")
+    void getDeposit() {
+        Agreement agreement = EntityCreator.getAgreement();
+        Card card = EntityCreator.getCard();
+        DetailedDepositDto detailedDepositDto = DtoCreator.getDetailedDepositDto();
+
+        when(agreementRepository.findById(UUID.fromString(DtoCreator.EXAMPLE_UUID)))
+                .thenReturn(Optional.of(agreement));
+        when(debitCardsRepository.findById(UUID.fromString(DtoCreator.EXAMPLE_UUID)))
+                .thenReturn(Optional.of(card));
+        when(depositMapper.toDetailedDepositDto(agreement, card)).thenReturn(detailedDepositDto);
+
+        DetailedDepositDto actualDetailedDepositDto = depositService.getDetailedDeposit(DtoCreator.EXAMPLE_UUID, DtoCreator.EXAMPLE_UUID);
+        assertEquals(actualDetailedDepositDto, detailedDepositDto);
     }
 
     @Test

@@ -1,11 +1,21 @@
 package com.andersenlab.rmtbanking.depositservice.service;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 
 import java.util.List;
 
 
 public interface DepositService {
+
+    /**
+     * Return @{@link DetailedDepositDto}.
+     *
+     * @param agreementId @{@link String} agreement id
+     * @param cardId      @{@link String} card id
+     * @return @{@link DetailedDepositDto}.
+     */
+    DetailedDepositDto getDetailedDeposit(String agreementId, String cardId);
 
     /**
      * Return list of @{@link DepositDto} of account with specific client id.
