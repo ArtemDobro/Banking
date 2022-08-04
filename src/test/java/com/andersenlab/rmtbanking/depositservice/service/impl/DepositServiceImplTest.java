@@ -75,8 +75,8 @@ class DepositServiceImplTest {
         when(agreementRepository.getAgreementsByClientIdAndAccountStatus(UUID.fromString(EXAMPLE), true))
                 .thenReturn(agreements);
         when(depositMapper.agreementsToDepositDtoList(agreements)).thenReturn(depositDtos);
-        when(accountRepository.findByClientId(UUID.fromString(EXAMPLE)))
-                .thenReturn(Optional.of(account));
+        when(accountRepository.isAccountExist(UUID.fromString(EXAMPLE)))
+                .thenReturn(1);
 
         List<DepositDto> actualDepositListDto = depositService.getAllDeposits(EXAMPLE);
         assertEquals(actualDepositListDto, depositDtos);

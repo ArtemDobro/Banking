@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -55,7 +56,8 @@ public class DepositServiceImpl implements DepositService {
     }
 
     private void validateAccountByUUID(UUID uuid) {
-        accountRepository.findByClientId(uuid)
-                .orElseThrow(() -> new ClientNotFoundException(ErrorMessage.CLIENT_STATUS));
+        if (Optional.ofNullable(accountRepository.isAccountExist(uuid)).isEmpty()) {
+            throw new ClientNotFoundException(ErrorMessage.CLIENT_STATUS);
+        }
     }
 }
