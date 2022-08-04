@@ -21,7 +21,7 @@ public class DepositController {
 
     @GetMapping("/{agreementId}")
     @ResponseStatus(HttpStatus.OK)
-    public DetailedDepositDto getDeposit(@Uuid @PathVariable("agreementId") String agreementId, @Uuid @RequestParam String cardId) {
+    public DetailedDepositDto getDeposit( @Uuid @PathVariable("agreementId") String agreementId, @Uuid @RequestParam String cardId) {
         return depositService.getDetailedDeposit(agreementId, cardId);
     }
 
