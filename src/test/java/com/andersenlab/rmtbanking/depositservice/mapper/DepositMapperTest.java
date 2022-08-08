@@ -20,16 +20,16 @@ class DepositMapperTest {
     @Test
     @DisplayName("Agreement to Dto test method")
     void fromEntityToDetailedDepositDto() {
-        Agreement agreement = EntityCreator.getAgreement();
-        Card card = EntityCreator.getCard();
+        Agreement agreement = EntityCreator.getTestAgreement();
+        Card card = EntityCreator.getTestCard();
         DetailedDepositDto detailedDepositDto = depositMapper.toDetailedDepositDto(agreement, card);
         compareEntityWithDetailedDepositDto(agreement, card, detailedDepositDto);
     }
 
     private void compareEntityWithDetailedDepositDto(Agreement agreement, Card card, DetailedDepositDto depositDto) {
         assertAll(() -> assertEquals(card.getCardNumber(), depositDto.getCardNumber()),
-                () -> assertEquals(agreement.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getStartDate()),
-                () -> assertEquals(agreement.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getEndDate()),
+                () -> assertEquals(agreement.getStartDate(), depositDto.getStartDate()),
+                () -> assertEquals(agreement.getEndDate(), depositDto.getEndDate()),
                 () -> assertEquals(agreement.getInterestRate(), depositDto.getInterestRate()),
                 () -> assertEquals(agreement.getCurrentBalance(), depositDto.getCurrentBalance()),
                 () -> assertEquals(agreement.isAutoRenewal(), depositDto.isAutoRenewal()),

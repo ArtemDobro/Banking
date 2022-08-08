@@ -2,9 +2,9 @@ package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
+import com.andersenlab.rmtbanking.depositservice.mapper.DebitCardsMapper;
 import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
-import com.andersenlab.rmtbanking.depositservice.mapper.DebitCardsMapper;
 import com.andersenlab.rmtbanking.depositservice.repository.AccountRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
 import com.andersenlab.rmtbanking.depositservice.util.DtoCreator;
@@ -19,7 +19,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,7 +48,7 @@ class DebitCardsServiceImplTest {
     @Test
     @DisplayName("Get all active debit cards test method")
     public void getAllActiveDebitCards() {
-        List<Card> cards = List.of(EntityCreator.getCard());
+        List<Card> cards = List.of(EntityCreator.getTestCard());
         List<DebitCardsDto> cardsDtos = List.of(DtoCreator.getDebitCardsDto());
         Account account = EntityCreator.getTestAccount();
 
@@ -63,7 +62,7 @@ class DebitCardsServiceImplTest {
 
     @Test
     void getOneDebitCardInfo() {
-        Card card = EntityCreator.getCard();
+        Card card = EntityCreator.getTestCard();
         when(debitCardsRepository.findById(card.getId())).thenReturn(Optional.of(card));
         DebitCardsInfoDto expected = DtoCreator.getDebitCardsInfoDto();
         when(debitCardsMapper.debitCardsInfoToDto(card)).thenReturn(expected);
