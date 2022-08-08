@@ -2,7 +2,6 @@ package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
-import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import com.andersenlab.rmtbanking.depositservice.mapper.DebitCardsMapper;
 import com.andersenlab.rmtbanking.depositservice.repository.AccountRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
@@ -14,13 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class DebitCardsServiceImpl implements DebitCardService {
-
     private final DebitCardsRepository debitCardsRepository;
     private final AccountRepository accountRepository;
     private final DebitCardsMapper debitCardsMapper;

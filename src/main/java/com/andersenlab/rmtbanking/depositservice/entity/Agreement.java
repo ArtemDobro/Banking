@@ -1,5 +1,6 @@
 package com.andersenlab.rmtbanking.depositservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -21,7 +22,6 @@ import static javax.persistence.CascadeType.*;
 @AllArgsConstructor
 @Table(name = "agreements")
 public class Agreement {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID",
@@ -36,10 +36,10 @@ public class Agreement {
     private BigDecimal interestRate;
 
     @Column(name = "start_date")
-    private Timestamp startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "end_date")
-    private Timestamp endDate;
+    private LocalDateTime endDate;
 
     @Column(name = "initial_amount")
     private BigDecimal initialAmount;

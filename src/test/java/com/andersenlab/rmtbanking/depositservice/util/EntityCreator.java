@@ -5,16 +5,18 @@ import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import com.andersenlab.rmtbanking.depositservice.entity.Product;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.UUID;
 
+@UtilityClass
 public class EntityCreator {
 
-    public static Card getCard() {
+    public static Card getTestCard() {
         Card card = new Card();
         card.setAccount(getTestAccount());
         card.setId(UUID.randomUUID());
@@ -44,20 +46,40 @@ public class EntityCreator {
         return account;
     }
 
-    public static Agreement getAgreement() {
+    public static Agreement getTestAgreement() {
         Agreement agreement = new Agreement();
-        Product product = new Product();
-        product.setName("product_name");
-        product.setCurrencyCode("USD");
         agreement.setId(UUID.randomUUID());
-        agreement.setAgreementNumber("agreement_number");
-        agreement.setInterestRate(BigDecimal.valueOf(9999999));
-        agreement.setStartDate(Timestamp.valueOf("2020-09-23 10:10:10.0"));
-        agreement.setEndDate(Timestamp.valueOf("2025-09-23 10:10:10.0"));
+        agreement.setAgreementNumber("number from ABS 1");
+        agreement.setInterestRate(BigDecimal.valueOf(4.5));
+        agreement.setStartDate(LocalDateTime.of(2020, 07, 20, 12, 12));
+        agreement.setEndDate(LocalDateTime.of(2024, 12, 8,12,12));
+        agreement.setInitialAmount(BigDecimal.valueOf(45000));
+        agreement.setCurrentBalance(BigDecimal.valueOf(10000));
         agreement.setActive(true);
         agreement.setAutoRenewal(false);
-        agreement.setAccount(getTestAccount());
-        agreement.setProduct(product);
+        agreement.setProduct(EntityCreator.getTestProduct());
+        agreement.setAccount(EntityCreator.getTestAccount());
         return agreement;
+
+    }
+
+    public static Product getTestProduct() {
+        Product product = new Product();
+        product.setId(233333333L);
+        product.setName("name for deposit product 1");
+        product.setSchemaName("RECCURING");
+        product.setInterestRateEarly(BigDecimal.valueOf(20));
+        product.setCapitalization(true);
+        product.setAmountMin(BigDecimal.valueOf(1000));
+        product.setAmountMax(BigDecimal.valueOf(100000));
+        product.setCurrencyCode("USD");
+        product.setActive(true);
+        product.setRevocable(true);
+        product.setMinDurationMonths(6);
+        product.setMinInterestRate(BigDecimal.valueOf(3.5));
+        product.setMaxInterestRate(BigDecimal.valueOf(6.6));
+        product.setActiveSince(LocalDate.of(2022, 7, 14));
+        product.setActiveUntil(LocalDate.of(2026, 7, 14));
+        return product;
     }
 }

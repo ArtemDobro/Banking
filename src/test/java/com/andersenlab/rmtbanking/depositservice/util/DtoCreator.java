@@ -3,13 +3,16 @@ package com.andersenlab.rmtbanking.depositservice.util;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
+import com.andersenlab.rmtbanking.depositservice.dto.SwitcherDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 
+@UtilityClass
 public class DtoCreator {
 
     public static final String EXAMPLE_UUID = "11111111-1111-1111-1111-1111111111dc";
@@ -36,7 +39,6 @@ public class DtoCreator {
                 "USD",
                 "EXPIRED");
     }
-
     public static DetailedDepositDto getDetailedDepositDto() {
         return new DetailedDepositDto("1234567890123456",
                 LocalDateTime.of(2022, Month.APRIL, 1, 10, 10),
@@ -50,5 +52,11 @@ public class DtoCreator {
                 true,
                 true);
     }
-}
 
+    public static SwitcherDto getSwitcherDto() {
+        return SwitcherDto.builder()
+                .accountId("11111111-1111-1111-1111-1111111111ac")
+                .isTurnOn(true)
+                .build();
+    }
+}
