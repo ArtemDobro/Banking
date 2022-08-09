@@ -2,7 +2,7 @@ package com.andersenlab.rmtbanking.depositservice.service.strategy;
 
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Product;
-import com.andersenlab.rmtbanking.depositservice.repository.AgreementsRepository;
+import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.util.function.BiFunction;
 @Component
 @RequiredArgsConstructor
 public class TurnOnSwitcherStrategy extends SwitcherStrategy {
-    private final AgreementsRepository repository;
+    private final AgreementRepository repository;
 
     @Override
     public Optional<Boolean> getAutoRenewal(Boolean isTurnOn, Boolean isAutoRenewal, Agreement agreement) {

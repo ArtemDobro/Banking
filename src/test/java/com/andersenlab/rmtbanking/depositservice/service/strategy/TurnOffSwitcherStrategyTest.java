@@ -1,7 +1,7 @@
 package com.andersenlab.rmtbanking.depositservice.service.strategy;
 
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
-import com.andersenlab.rmtbanking.depositservice.repository.AgreementsRepository;
+import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TurnOffSwitcherStrategyTest {
 
     @Mock
-    private AgreementsRepository agreementsRepository;
+    private AgreementRepository agreementsRepository;
     @InjectMocks
     private TurnOffSwitcherStrategy turnOffSwitcherStrategy;
 
