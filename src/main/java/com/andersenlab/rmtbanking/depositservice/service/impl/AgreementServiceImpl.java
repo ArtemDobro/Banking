@@ -2,7 +2,7 @@ package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.SwitcherDto;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
-import com.andersenlab.rmtbanking.depositservice.repository.AgreementsRepository;
+import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import com.andersenlab.rmtbanking.depositservice.service.AgreementService;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.AgreementNotFoundException;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AgreementServiceImpl implements AgreementService {
-    private final AgreementsRepository repository;
+    private final AgreementRepository repository;
     private final SwitcherStrategyPicker switcherStrategyPicker;
 
     @Override

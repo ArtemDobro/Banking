@@ -4,7 +4,7 @@ import com.andersenlab.rmtbanking.depositservice.dto.SwitcherDto;
 import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Product;
-import com.andersenlab.rmtbanking.depositservice.repository.AgreementsRepository;
+import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import com.andersenlab.rmtbanking.depositservice.service.strategy.SwitcherStrategyPicker;
 import com.andersenlab.rmtbanking.depositservice.service.strategy.TurnOffSwitcherStrategy;
 import com.andersenlab.rmtbanking.depositservice.service.strategy.TurnOnSwitcherStrategy;
@@ -37,7 +37,7 @@ class AgreementServiceImplTest {
     private static final LocalDate endDate = LocalDate.now();
 
     @Mock
-    private AgreementsRepository agreementsRepository;
+    private AgreementRepository agreementsRepository;
     @Mock
     private SwitcherStrategyPicker switcherStrategyPicker;
     @Mock
