@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
-@Validated
 @RequestMapping("/auth/deposit-products")
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +22,7 @@ public class ProductsController {
     private final AvailableDepositsServiceImpl service;
     @GetMapping("/{clientId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Product> getAllAvailableProducts(@Uuid @PathVariable("clientId") String clientId){
+    public List<Product> getAllAvailableProducts(@Uuid @PathVariable("clientId") String clientId) {
         return service.getAllActiveProducts();
     }
 }
