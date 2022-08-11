@@ -25,12 +25,16 @@ class DepositMapperTest {
         Agreement agreement = EntityCreator.getAgreement();
         Card card = EntityCreator.getCard();
         DetailedDepositDto detailedDepositDto = depositMapper.toDetailedDepositDto(agreement, card);
-        compareEntityWithDetailedDepositDto(agreement, card, detailedDepositDto);
+        compareCardWithDetailedDepositDto(card, detailedDepositDto);
+        compareAgreementWithDetailedDepositDto(agreement, detailedDepositDto);
     }
 
-    private void compareEntityWithDetailedDepositDto(Agreement agreement, Card card, DetailedDepositDto depositDto) {
-        assertAll(() -> assertEquals(card.getCardNumber(), depositDto.getCardNumber()),
-                () -> assertEquals(agreement.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getStartDate()),
+    private void compareCardWithDetailedDepositDto(Card card, DetailedDepositDto depositDto) {
+        assertEquals(card.getCardNumber(), depositDto.getCardNumber());
+    }
+
+    private void compareAgreementWithDetailedDepositDto(Agreement agreement, DetailedDepositDto depositDto) {
+        assertAll(() -> assertEquals(agreement.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getStartDate()),
                 () -> assertEquals(agreement.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(), depositDto.getEndDate()),
                 () -> assertEquals(agreement.getInterestRate(), depositDto.getInterestRate()),
                 () -> assertEquals(agreement.getCurrentBalance(), depositDto.getCurrentBalance()),
@@ -70,8 +74,8 @@ class DepositMapperTest {
 
     private void compareEntityListWithDtoList(List<Agreement> agreementList, List<DepositDto> agreementDtoList) {
         assertEquals(agreementList.size(), agreementDtoList.size());
-        for (int s = 0; s < agreementList.size(); s++) {
-            compareEntityWithDto(agreementList.get(s), agreementDtoList.get(s));
+        for (int i = 0; i < agreementList.size(); i++) {
+            compareEntityWithDto(agreementList.get(i), agreementDtoList.get(i));
         }
     }
 }

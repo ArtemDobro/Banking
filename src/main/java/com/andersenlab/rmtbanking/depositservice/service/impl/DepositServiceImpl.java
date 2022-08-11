@@ -10,7 +10,6 @@ import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
 import com.andersenlab.rmtbanking.depositservice.service.DepositService;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.AgreementNotFoundException;
-import com.andersenlab.rmtbanking.depositservice.service.exeption.ClientNotFoundException;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.InvalidUuidException;
 import com.andersenlab.rmtbanking.depositservice.service.util.UuidUtil;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -50,14 +48,6 @@ public class DepositServiceImpl implements DepositService {
     }
 
     public List<DepositDto> getAllDeposits(String clientId) {
-        UUID uuid = UUID.fromString(clientId);
-        validateAccountByUUID(uuid);
-        return depositMapper.agreementsToDepositDtoList(agreementRepository.getAgreementsByClientIdAndAccountStatus(uuid, true));
-    }
-
-    private void validateAccountByUUID(UUID uuid) {
-        if (Optional.ofNullable(accountRepository.isAccountExist(uuid)).isEmpty()) {
-            throw new ClientNotFoundException(ErrorMessage.CLIENT_STATUS);
-        }
+        return depositMapper.agreementsToDepositDtoList(agreementRepository.getAgreementsByClientIdAndAccountStatus(UUID.fromString(clientId), true));
     }
 }
