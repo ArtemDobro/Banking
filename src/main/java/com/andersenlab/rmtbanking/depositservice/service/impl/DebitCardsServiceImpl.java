@@ -8,6 +8,7 @@ import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository
 import com.andersenlab.rmtbanking.depositservice.service.DebitCardService;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ClientNotFoundException;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
+import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DebitCardsServiceImpl implements DebitCardService {
     private final DebitCardsRepository debitCardsRepository;
     private final AccountRepository accountRepository;
@@ -25,6 +27,7 @@ public class DebitCardsServiceImpl implements DebitCardService {
     @Override
     @Transactional(readOnly = true)
     public List<DebitCardsDto> getAllActiveDebitCards(String clientId) {
+        log.info("Get list of debit cards for client with id {}", clientId);
         UUID uuid = UUID.fromString(clientId);
         accountRepository.findByClientId(uuid)
                 .orElseThrow(() -> new ClientNotFoundException(ErrorMessage.CLIENT_STATUS));
@@ -35,6 +38,7 @@ public class DebitCardsServiceImpl implements DebitCardService {
     @Override
     @Transactional(readOnly = true)
     public DebitCardsInfoDto getOneDebitCardInfo(String cardId) {
+        log.info("Get information about debit card with id {}", cardId);
         return debitCardsMapper.debitCardsInfoToDto(debitCardsRepository.findById(UUID.fromString(cardId)).orElseThrow());
     }
 }
