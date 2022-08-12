@@ -9,6 +9,7 @@ import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
 import com.andersenlab.rmtbanking.depositservice.service.strategy.SwitcherStrategy;
 import com.andersenlab.rmtbanking.depositservice.service.strategy.SwitcherStrategyPicker;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AgreementServiceImpl implements AgreementService {
     private final AgreementRepository repository;
     private final SwitcherStrategyPicker switcherStrategyPicker;
@@ -24,6 +26,7 @@ public class AgreementServiceImpl implements AgreementService {
     @Override
     @Transactional
     public void setAutoRenewal(SwitcherDto switcherDto) {
+        log.info("set switcherDto with id {}", switcherDto.getAccountId());
         Agreement agreement = getAgreement(switcherDto);
 
         Optional<Boolean> autoRenewal = getIsAutoRenewal(switcherDto, agreement);
@@ -34,6 +37,7 @@ public class AgreementServiceImpl implements AgreementService {
     }
 
     private Optional<Boolean> getIsAutoRenewal(SwitcherDto switcherDto, Agreement agreement) {
+        log.info("getIsAutoRenewal for switcherDto with id {}", switcherDto.getAccountId());
         SwitcherStrategy switcherStrategy = switcherStrategyPicker.getSwitcherStrategy(switcherDto.getIsTurnOn());
         return switcherStrategy.getAutoRenewal(
                 switcherDto.getIsTurnOn(),
@@ -43,6 +47,7 @@ public class AgreementServiceImpl implements AgreementService {
     }
 
     private Agreement getAgreement(SwitcherDto switcherDto) {
+        log.info("getAgreement for switcherDto with id {}", switcherDto.getAccountId());
         return repository.findByAccountId(UUID.fromString(switcherDto.getAccountId()))
                 .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.AGREEMENT_STATUS));
     }

@@ -1,5 +1,6 @@
 spring:
-
+  main:
+    banner-mode: off
   datasource:
     url: ${datasource.url}
     username: ${datasource.username}
