@@ -7,7 +7,6 @@ import com.andersenlab.rmtbanking.depositservice.util.EntityCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +19,7 @@ class DebitCardsMapperTest {
     @Test
     @DisplayName("Debit cards to Dto test method")
     void fromEntityToDto() {
-        Card card = EntityCreator.getCard();
+        Card card = EntityCreator.getTestCard();
         DebitCardsDto cardDto = debitCardsMapper.toDto(card);
         compareEntityWithDto(card, cardDto);
     }
@@ -36,7 +35,7 @@ class DebitCardsMapperTest {
     @Test
     @DisplayName("Debit card list to list Dto's test method")
     void debitCardsToDebitCardsDto() {
-        List<Card> cardList = List.of(EntityCreator.getCard());
+        List<Card> cardList = List.of(EntityCreator.getTestCard());
         List<DebitCardsDto> cardDtos = debitCardsMapper.debitCardsToDebitCardsDto(cardList);
         compareProductListWithListDto(cardList, cardDtos);
     }

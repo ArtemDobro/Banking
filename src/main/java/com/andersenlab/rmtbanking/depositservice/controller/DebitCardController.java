@@ -16,9 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class DebitCardController {
-
     private final DebitCardService debitCardService;
-
     @GetMapping("/{clientId}")
     @ResponseStatus(HttpStatus.OK)
     public List<DebitCardsDto> getAllDebitCards(@Uuid @PathVariable("clientId") String clientId) {

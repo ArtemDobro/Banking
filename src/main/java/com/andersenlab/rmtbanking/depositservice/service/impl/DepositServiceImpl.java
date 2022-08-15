@@ -14,6 +14,7 @@ import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.InvalidUuidException;
 import com.andersenlab.rmtbanking.depositservice.service.util.UuidUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DepositServiceImpl implements DepositService {
 
     private final AgreementRepository agreementRepository;
@@ -32,16 +34,19 @@ public class DepositServiceImpl implements DepositService {
     @Override
     @Transactional(readOnly = true)
     public DetailedDepositDto getDetailedDeposit(String agreementId, String cardId) {
+        log.info("getDetailedDeposit about card with id {}", cardId);
         return depositMapper.toDetailedDepositDto(findAgreementById(agreementId), findCardById(cardId));
     }
 
     private Agreement findAgreementById(String agreementId) {
+        log.info("findAgreementById with agreementId {}", agreementId);
         return agreementRepository.findById(UuidUtil.UuidFromString(agreementId)
                         .orElseThrow(() -> new InvalidUuidException(ErrorMessage.UUID_INVALID)))
                 .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.AGREEMENT_NOT_FOUND));
     }
 
     private Card findCardById(String cardId) {
+        log.info("findCardById with cardId {}", cardId);
         return debitCardsRepository.findById(UuidUtil.UuidFromString(cardId)
                         .orElseThrow(() -> new InvalidUuidException(ErrorMessage.UUID_INVALID)))
                 .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.CARD_NOT_FOUND));

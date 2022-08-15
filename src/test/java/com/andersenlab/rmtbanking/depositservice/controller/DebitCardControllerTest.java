@@ -44,7 +44,7 @@ public class DebitCardControllerTest {
     @Test
     public void dateFormatTest() throws Exception {
         Account account = EntityCreator.getTestAccount();
-        Card card = EntityCreator.getCard();
+        Card card = EntityCreator.getTestCard();
         String clientId = account.getClientId().toString();
 
         List<DebitCardsDto> cardsDtos = List.of(debitCardsMapper.toDto(card));

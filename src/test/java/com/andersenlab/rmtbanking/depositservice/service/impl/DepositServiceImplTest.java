@@ -51,8 +51,8 @@ class DepositServiceImplTest {
     @Test
     @DisplayName("Get deposit test method")
     void getDeposit() {
-        Agreement agreement = EntityCreator.getAgreement();
-        Card card = EntityCreator.getCard();
+        Agreement agreement = EntityCreator.getTestAgreement();
+        Card card = EntityCreator.getTestCard();
         DetailedDepositDto detailedDepositDto = DtoCreator.getDetailedDepositDto();
 
         when(agreementRepository.findById(UUID.fromString(DtoCreator.EXAMPLE_UUID)))
