@@ -40,7 +40,6 @@ public interface DepositMapper {
 
     @Named("getDefaultCard")
     default String getDefaultDebitCard(Account account) {
-
         return Optional.ofNullable(account.getCards())
                 .stream()
                 .flatMap(Collection::stream)
