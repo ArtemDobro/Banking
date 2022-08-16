@@ -3,6 +3,7 @@ package com.andersenlab.rmtbanking.depositservice.util;
 import com.andersenlab.rmtbanking.depositservice.dto.CardProductDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
+import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.dto.SwitcherDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
@@ -12,7 +13,6 @@ import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 
 @UtilityClass
@@ -45,8 +45,8 @@ public class DtoCreator {
 
     public static DetailedDepositDto getDetailedDepositDto() {
         return new DetailedDepositDto("1234567890123456",
-                LocalDateTime.of(2022, Month.APRIL, 1, 10, 10),
-                LocalDateTime.of(2028, Month.APRIL, 1, 10, 10),
+                DateTimeUtil.getDateTime("2022-01-01 10:00", DateTimeUtil.getDefaultFormatter()),
+                DateTimeUtil.getDateTime("2028-01-01 10:00", DateTimeUtil.getDefaultFormatter()),
                 new BigDecimal("5.3"),
                 new BigDecimal("7000000"),
                 true,
@@ -76,5 +76,16 @@ public class DtoCreator {
                 BigDecimal.valueOf(5000),
                 true,
                 12);
+    }
+
+    public static DepositDto getDepositDto() {
+        return new DepositDto(
+                EXAMPLE_UUID,
+                DateTimeUtil.getDateTime("2022-01-01 10:00", DateTimeUtil.getDefaultFormatter()),
+                DateTimeUtil.getDateTime("2028-01-01 10:00", DateTimeUtil.getDefaultFormatter()),
+                BigDecimal.valueOf(9999999),
+                "product_name",
+                "USD",
+                "");
     }
 }

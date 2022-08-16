@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Collections;
 import java.util.UUID;
 
 @UtilityClass
@@ -46,6 +47,7 @@ public class EntityCreator {
         account.setActive(true);
         account.setSalaryProject("YES");
         account.setBlockedSum(BigDecimal.valueOf(11111));
+        account.setCards(Collections.emptyList());
         return account;
     }
 

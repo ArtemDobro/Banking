@@ -1,9 +1,11 @@
 package com.andersenlab.rmtbanking.depositservice.service.impl;
 
+import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import com.andersenlab.rmtbanking.depositservice.mapper.DepositMapper;
+import com.andersenlab.rmtbanking.depositservice.repository.AccountRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.AgreementRepository;
 import com.andersenlab.rmtbanking.depositservice.repository.DebitCardsRepository;
 import com.andersenlab.rmtbanking.depositservice.service.DepositService;
@@ -16,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,6 +28,7 @@ public class DepositServiceImpl implements DepositService {
 
     private final AgreementRepository agreementRepository;
     private final DebitCardsRepository debitCardsRepository;
+    private final AccountRepository accountRepository;
     private final DepositMapper depositMapper;
 
     @Override
@@ -44,5 +50,9 @@ public class DepositServiceImpl implements DepositService {
         return debitCardsRepository.findById(UuidUtil.UuidFromString(cardId)
                         .orElseThrow(() -> new InvalidUuidException(ErrorMessage.UUID_INVALID)))
                 .orElseThrow(() -> new AgreementNotFoundException(ErrorMessage.CARD_NOT_FOUND));
+    }
+
+    public List<DepositDto> getAllDeposits(String clientId) {
+        return depositMapper.agreementsToDepositDtoList(agreementRepository.getAgreementsByClientIdAndAccountStatus(UUID.fromString(clientId), true));
     }
 }
