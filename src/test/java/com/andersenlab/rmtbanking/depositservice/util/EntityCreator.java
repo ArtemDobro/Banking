@@ -3,9 +3,12 @@ package com.andersenlab.rmtbanking.depositservice.util;
 import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
+import com.andersenlab.rmtbanking.depositservice.entity.CardProduct;
 import com.andersenlab.rmtbanking.depositservice.entity.Product;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
 import lombok.experimental.UtilityClass;
+import com.andersenlab.rmtbanking.depositservice.entity.enums.PaymentSystem;
+import com.andersenlab.rmtbanking.depositservice.entity.enums.PremiumStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,6 +53,9 @@ public class EntityCreator {
 
     public static Agreement getTestAgreement() {
         Agreement agreement = new Agreement();
+        Product product = new Product();
+        product.setName("product_name");
+        product.setCurrencyCode("USD");
         agreement.setId(UUID.randomUUID());
         agreement.setAgreementNumber("number from ABS 1");
         agreement.setInterestRate(BigDecimal.valueOf(4.5));
@@ -83,5 +89,21 @@ public class EntityCreator {
         product.setActiveSince(LocalDate.of(2022, 7, 14));
         product.setActiveUntil(LocalDate.of(2026, 7, 14));
         return product;
+    }
+
+    public static CardProduct getCardProduct() {
+        CardProduct cardProduct = new CardProduct();
+        cardProduct.setId(1L);
+        cardProduct.setCardName("card_name");
+        cardProduct.setPaymentSystem(PaymentSystem.MASTERCARD);
+        cardProduct.setCashBack(BigDecimal.valueOf(3));
+        cardProduct.setVirtual(false);
+        cardProduct.setPremiumStatus(PremiumStatus.BLACK);
+        cardProduct.setServicePrice(BigDecimal.valueOf(3000));
+        cardProduct.setProductPrice(BigDecimal.valueOf(5000));
+        cardProduct.setCurrencyCode("USD");
+        cardProduct.setActive(true);
+        cardProduct.setCardDuration(12);
+        return cardProduct;
     }
 }
