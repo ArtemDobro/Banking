@@ -1,10 +1,13 @@
 package com.andersenlab.rmtbanking.depositservice.util;
 
+import com.andersenlab.rmtbanking.depositservice.dto.CardProductDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
 import com.andersenlab.rmtbanking.depositservice.dto.SwitcherDto;
 import com.andersenlab.rmtbanking.depositservice.entity.enums.CardStatus;
+import com.andersenlab.rmtbanking.depositservice.entity.enums.PaymentSystem;
+import com.andersenlab.rmtbanking.depositservice.entity.enums.PremiumStatus;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
@@ -39,6 +42,7 @@ public class DtoCreator {
                 "USD",
                 "EXPIRED");
     }
+
     public static DetailedDepositDto getDetailedDepositDto() {
         return new DetailedDepositDto("1234567890123456",
                 LocalDateTime.of(2022, Month.APRIL, 1, 10, 10),
@@ -58,5 +62,19 @@ public class DtoCreator {
                 .accountId("11111111-1111-1111-1111-1111111111ac")
                 .isTurnOn(true)
                 .build();
+    }
+
+    public static CardProductDto getCardProductDto() {
+        return new CardProductDto(1L,
+                "card_name",
+                PremiumStatus.BLACK,
+                PaymentSystem.MASTERCARD,
+                BigDecimal.valueOf(3),
+                "Mono", false,
+                "USD",
+                BigDecimal.valueOf(3000),
+                BigDecimal.valueOf(5000),
+                true,
+                12);
     }
 }
