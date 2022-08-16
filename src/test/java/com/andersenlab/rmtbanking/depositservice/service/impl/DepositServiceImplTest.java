@@ -2,7 +2,6 @@ package com.andersenlab.rmtbanking.depositservice.service.impl;
 
 import com.andersenlab.rmtbanking.depositservice.dto.DepositDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DetailedDepositDto;
-import com.andersenlab.rmtbanking.depositservice.entity.Account;
 import com.andersenlab.rmtbanking.depositservice.entity.Agreement;
 import com.andersenlab.rmtbanking.depositservice.entity.Card;
 import com.andersenlab.rmtbanking.depositservice.mapper.DepositMapper;
@@ -68,15 +67,12 @@ class DepositServiceImplTest {
     @Test
     @DisplayName("Get all deposits test method")
     void getAllDeposits() {
-        List<Agreement> agreements = List.of(EntityCreator.getAgreement());
+        List<Agreement> agreements = List.of(EntityCreator.getTestAgreement());
         List<DepositDto> depositDtos = List.of(DtoCreator.getDepositDto());
-        Account account = EntityCreator.getTestAccount();
 
         when(agreementRepository.getAgreementsByClientIdAndAccountStatus(UUID.fromString(EXAMPLE), true))
                 .thenReturn(agreements);
         when(depositMapper.agreementsToDepositDtoList(agreements)).thenReturn(depositDtos);
-        when(accountRepository.isAccountExist(UUID.fromString(EXAMPLE)))
-                .thenReturn(1);
 
         List<DepositDto> actualDepositListDto = depositService.getAllDeposits(EXAMPLE);
         assertEquals(actualDepositListDto, depositDtos);
