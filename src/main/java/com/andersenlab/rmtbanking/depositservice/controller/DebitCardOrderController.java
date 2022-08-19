@@ -1,7 +1,8 @@
 package com.andersenlab.rmtbanking.depositservice.controller;
 
+import com.andersenlab.rmtbanking.depositservice.dto.CardAfterOpeningDto;
+import com.andersenlab.rmtbanking.depositservice.dto.CreateNewCardDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
-import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 import com.andersenlab.rmtbanking.depositservice.service.DebitCardService;
 import com.andersenlab.rmtbanking.depositservice.validation.annotation.Uuid;
 import lombok.RequiredArgsConstructor;
@@ -12,21 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Validated
-@RequestMapping("/auth/deposit-cards")
+@RequestMapping("auth/deposit-card-orders")
 @RestController
 @RequiredArgsConstructor
-public class DebitCardController {
+public class DebitCardOrderController {
     private final DebitCardService debitCardService;
 
-    @GetMapping("/{clientId}")
+    @PostMapping("/new/{clientId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<DebitCardsDto> getAllDebitCards(@Uuid @PathVariable("clientId") String clientId) {
-        return debitCardService.getAllActiveDebitCards(clientId);
+    public CardAfterOpeningDto orderNewCardByIdProduct(@Uuid @PathVariable("clientId") String clientId, @RequestBody CreateNewCardDto createNewCardDto) {
+        return debitCardService.orderNewCardByIdProduct(clientId,createNewCardDto);
     }
 
-    @GetMapping("/info/{cardId}")
-    @ResponseStatus(HttpStatus.OK)
-    public DebitCardsInfoDto getDebitCardInfo(@Uuid @PathVariable String cardId) {
-        return debitCardService.getOneDebitCardInfo(cardId);
-    }
 }

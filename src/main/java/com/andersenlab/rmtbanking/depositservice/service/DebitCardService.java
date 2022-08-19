@@ -1,5 +1,7 @@
 package com.andersenlab.rmtbanking.depositservice.service;
 
+import com.andersenlab.rmtbanking.depositservice.dto.CardAfterOpeningDto;
+import com.andersenlab.rmtbanking.depositservice.dto.CreateNewCardDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsDto;
 import com.andersenlab.rmtbanking.depositservice.dto.DebitCardsInfoDto;
 
@@ -19,4 +21,6 @@ public interface DebitCardService {
      * @return if uuid is correct and account is active we return one card
      */
     DebitCardsInfoDto getOneDebitCardInfo(String cardId);
+
+    CardAfterOpeningDto orderNewCardByIdProduct(String clientId, CreateNewCardDto createNewCardDto);
 }

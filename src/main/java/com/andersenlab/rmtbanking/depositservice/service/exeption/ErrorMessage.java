@@ -7,4 +7,5 @@ public class ErrorMessage {
     public static final String AGREEMENT_NOT_FOUND = "Agreement not found";
     public static final String CARD_NOT_FOUND = "Card not found";
     public static final String  UUID_INVALID = "Invalid UUID";
+    public static final String  CARD_PRODUCT_NOT_FOUND = "Card product not found";
 }
