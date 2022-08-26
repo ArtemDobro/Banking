@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="insert test data into card_products 1" author="g.aldamm">
+        <insert tableName="card_products">
+            <column name="id" value="1"/>
+            <column name="card_name" value="name for card product 1"/>
+            <column name="payment_system" value="VISA"/>
+            <column name="cashback" value="1.0"/>
+            <column name="co_brand" value="AEROFLOT"/>
+            <column name="is_virtual" value="true"/>
+            <column name="premium_status" value="CLASSIC"/>
+            <column name="service_price" value="300"/>
+            <column name="product_price" value="0"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="is_active" value="true"/>
+            <column name="card_duration" value="5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into card_products 2" author="g.aldamm">
+        <insert tableName="card_products">
+            <column name="id" value="2"/>
+            <column name="card_name" value="name for card product 2"/>
+            <column name="payment_system" value="MASTERCARD"/>
+            <column name="premium_status" value="BLACK"/>
+            <column name="service_price" value="3000"/>
+            <column name="product_price" value="5000"/>
+            <column name="currency_code" value="USD"/>
+            <column name="is_active" value="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into card_products 3" author="g.aldamm">
+        <insert tableName="card_products">
+            <column name="id" value="3"/>
+            <column name="card_name" value="name for card product 3"/>
+            <column name="payment_system" value="MIR"/>
+            <column name="cashback" value="5.0"/>
+            <column name="co_brand" value="WORLDOFTANKS"/>
+            <column name="is_virtual" value="false"/>
+            <column name="premium_status" value="SOCIAL"/>
+            <column name="service_price" value="0"/>
+            <column name="product_price" value="0"/>
+            <column name="currency_code" value="EUR"/>
+            <column name="is_active" value="true"/>
+            <column name="card_duration" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into card_products 4" author="g.aldamm">
+        <insert tableName="card_products">
+            <column name="id" value="4"/>
+            <column name="card_name" value="name for card product 4"/>
+            <column name="payment_system" value="VISA"/>
+            <column name="cashback" value="0"/>
+            <column name="co_brand" value="MTS"/>
+            <column name="is_virtual" value="false"/>
+            <column name="premium_status" value="INFINITE"/>
+            <column name="service_price" value="50"/>
+            <column name="product_price" value="300"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="is_active" value="false"/>
+            <column name="card_duration" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into card_products 5" author="g.aldamm">
+        <insert tableName="card_products">
+            <column name="id" value="5"/>
+            <column name="card_name" value="name for card product 5"/>
+            <column name="payment_system" value="MIR"/>
+            <column name="cashback" value="50.0"/>
+            <column name="co_brand" value="MAGNIT"/>
+            <column name="is_virtual" value="true"/>
+            <column name="premium_status" value="SUPREME"/>
+            <column name="service_price" value="10000"/>
+            <column name="product_price" value="10000"/>
+            <column name="currency_code" value="RUB"/>
+            <column name="is_active" value="false"/>
+            <column name="card_duration" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

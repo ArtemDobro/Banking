@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="insert test data into operation_types 1" author="g.aldamm">
+        <insert tableName="operation_types">
+            <column name="id" value="1"/>
+            <column name="type" value="PAYMENT"/>
+            <column name="is_debit" value="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operation_types 2" author="g.aldamm">
+        <insert tableName="operation_types">
+            <column name="id" value="2"/>
+            <column name="type" value="REPLENISHMENT"/>
+            <column name="is_debit" value="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operation_types 3" author="g.aldamm">
+        <insert tableName="operation_types">
+            <column name="id" value="3"/>
+            <column name="type" value="TRANSFER"/>
+            <column name="is_debit" value="false"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operation_types 4" author="g.aldamm">
+        <insert tableName="operation_types">
+            <column name="id" value="4"/>
+            <column name="type" value="TRANSFER"/>
+            <column name="is_debit" value="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert test data into operation_types 5" author="g.aldamm">
+        <insert tableName="operation_types">
+            <column name="id" value="5"/>
+            <column name="type" value="OTHER_EXPENDITURE"/>
+            <column name="is_debit" value="false"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

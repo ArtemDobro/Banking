@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="create table products" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table products already exists">
+            <not>
+                <tableExists tableName="products"/>
+            </not>
+        </preConditions>
+        <createTable tableName="products">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="schema_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="interest_rate_early" type="numeric(6,4)"/>
+            <column name="is_capitalization" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount_min" type="numeric(19,4)"/>
+            <column name="amount_max" type="numeric(19,4)">
+                <constraints checkConstraint="CHECK (amount_max >= amount_min)"/>
+            </column>
+            <column name="currency_code" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_revocable" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_duration_months" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_duration_months" type="integer">
+                <constraints nullable="false" checkConstraint="CHECK (max_duration_months >= min_duration_months)"/>
+            </column>
+            <column name="min_interest_rate" type="numeric(6,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_interest_rate" type="numeric(6,4)">
+                <constraints nullable="false" checkConstraint="CHECK (max_interest_rate >= min_interest_rate)"/>
+            </column>
+            <column name="active_since" type="date"/>
+            <column name="active_until" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table accounts" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table accounts already exists">
+            <not>
+                <tableExists tableName="accounts"/>
+            </not>
+        </preConditions>
+        <createTable tableName="accounts">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_number" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_balance" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="open_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="close_date" type="date">
+                <constraints nullable="false" checkConstraint="CHECK (close_date > open_date)"/>
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary_project" type="varchar(30)"/>
+            <column name="blocked_sum" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table agreements" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table agreements already exists">
+            <not>
+                <tableExists tableName="agreements"/>
+            </not>
+        </preConditions>
+        <createTable tableName="agreements">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="agreement_number" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="uuid">
+                <constraints foreignKeyName="account_id" references="accounts(id)" nullable="false"/>
+            </column>
+            <column name="product_id" type="integer">
+                <constraints foreignKeyName="product_id" references="products(id)" nullable="false"/>
+            </column>
+            <column name="interest_rate" type="numeric(6,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="timestamp with time zone">
+                <constraints nullable="false" checkConstraint="CHECK (end_date > start_date)"/>
+            </column>
+            <column name="initial_amount" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="current_balance" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="auto_renewal" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table card_products" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table card_products already exists">
+            <not>
+                <tableExists tableName="card_products"/>
+            </not>
+        </preConditions>
+        <createTable tableName="card_products">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="card_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_system" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cashback" type="numeric(6,4)"/>
+            <column name="co_brand" type="varchar(30)"/>
+            <column name="is_virtual" type="boolean" defaultValueBoolean="false"/>
+            <column name="premium_status" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_price" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_price" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency_code" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_duration" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table cards" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table cards already exists">
+            <not>
+                <tableExists tableName="cards"/>
+            </not>
+        </preConditions>
+        <createTable tableName="cards">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="card_number" type="char(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_id" type="uuid">
+                <constraints foreignKeyName="account_id" references="accounts(id)"/>
+            </column>
+            <column name="transaction_limit" type="numeric(19,4)">
+                <constraints checkConstraint="CHECK (transaction_limit >= 0 )"/>
+            </column>
+            <column name="status" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiration_date" type="date">
+                <constraints nullable="false" checkConstraint="CHECK (expiration_date > now())"/>
+            </column>
+            <column name="holder_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="virtual_card" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="digital_wallet" type="varchar(30)"/>
+            <column name="is_default" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="card_product_id" type="integer">
+                <constraints foreignKeyName="card_product_id" references="card_products(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table operation_types" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table operation_types already exists">
+            <not>
+                <tableExists tableName="operation_types"/>
+            </not>
+        </preConditions>
+        <createTable tableName="operation_types">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(30)"/>
+            <column name="is_debit" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create table operations" author="g.aldamm">
+        <preConditions onFail="CONTINUE" onFailMessage="Table operations already exists">
+            <not>
+                <tableExists tableName="operations"/>
+            </not>
+        </preConditions>
+        <createTable tableName="operations">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_id" type="uuid">
+                <constraints foreignKeyName="account_id" references="accounts(id)" nullable="false"/>
+            </column>
+            <column name="completed_at" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sum" type="numeric(19,4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="details" type="text"/>
+            <column name="currency_code" type="char(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="operation_type_id" type="integer">
+                <constraints foreignKeyName="operation_type_id" references="operation_types(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
