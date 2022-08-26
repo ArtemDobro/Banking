@@ -9,9 +9,6 @@ import java.util.Optional;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author Bogdan Yakovenko
- */
 @Repository
 public interface AgreementRepository extends JpaRepository<Agreement, UUID> {
     /**
