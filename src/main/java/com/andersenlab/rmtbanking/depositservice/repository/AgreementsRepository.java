@@ -7,9 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * @author Bogdan Yakovenko
- */
 @Repository
 public interface AgreementsRepository extends JpaRepository<Agreement, UUID> {
     /**
