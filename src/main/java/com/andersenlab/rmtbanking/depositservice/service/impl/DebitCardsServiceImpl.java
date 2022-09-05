@@ -13,8 +13,13 @@ import com.andersenlab.rmtbanking.depositservice.service.DebitCardService;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.CardProductNotFound;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ClientNotFoundException;
 import com.andersenlab.rmtbanking.depositservice.service.exeption.ErrorMessage;
+import com.andersenlab.rmtbanking.depositservice.topicKafkaRequest.CardOrderRequest;
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +29,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@PropertySource("classpath:topic.properties")
 public class DebitCardsServiceImpl implements DebitCardService {
     private final DebitCardsRepository debitCardsRepository;
     private final AccountRepository accountRepository;
@@ -52,6 +58,10 @@ public class DebitCardsServiceImpl implements DebitCardService {
     public CardAfterOpeningDto orderNewCardByIdProduct(String clientId, CreateNewCardDto createNewCardDto) {
         CardProduct cardProduct = checkIdProduct(Long.getLong(createNewCardDto.getIdProduct()));
 
+    }
+    @KafkaListener(topics = "deposit_to_master_card_order")
+    public CardOrderRequest listener(CardOrderRequest cardOrderRequest) {
+        return cardOrderRequest;
     }
 
     private CardProduct checkIdProduct(Long idProduct) {
